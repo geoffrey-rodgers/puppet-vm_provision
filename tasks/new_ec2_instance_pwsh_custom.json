@@ -1,7 +1,7 @@
 {
   "puppet_task_version": 1,
   "supports_noop": false,
-  "description": "Creates a new EC2 instance using supplied parameters. This task expects most resources to support the new instance to already be in place, e.g. subnet, public key pair, security group, etc. The task will create a new instance, attach an EBS volume, and tag the instance with the supplied tags.",
+  "description": "Run on a Windows node to create a new EC2 instance using supplied parameters. This task expects most resources to support the new instance to already be in place, e.g. subnet, public key pair, security group, etc. The task will create a new instance, attach an EBS volume, and tag the instance with the supplied tags.",
   "parameters": {
     "ami": {
       "description": "The AMI to use for the instance",

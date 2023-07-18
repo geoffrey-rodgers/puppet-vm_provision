@@ -38,6 +38,7 @@ Set-Location -Path "C:\vm_provision\aws\custom_instance"
 Remove-Item $files -ErrorAction SilentlyContinue -Force -Recurse
 
 terraform init
+
 terraform apply -auto-approve `
   -var "ami=$ami" `
   -var "name=$instance_name" `
