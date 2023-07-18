@@ -1,12 +1,7 @@
 #!/bin/bash
 
-instance_size=$PT_instance_size
-ami=$PT_ami
-instance_name=$PT_instance_name
-region=$PT_region
-public_key_data=$PT_public_key_data
-aws_access_key_id=$PT_aws_access_key_id
-aws_secret_access_key=$PT_aws_secret_access_key
+# Since we are using the shell provisioner, we don't need this script to take input.
+# We use the Puppet Task parameters directly by prefixing them with PT_.
 
 export TF_LOG="DEBUG"
 export TF_LOG_PATH="./terraform.log"
