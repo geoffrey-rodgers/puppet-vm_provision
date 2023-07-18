@@ -1,12 +1,14 @@
-# @summary A short summary of the purpose of this class
+# @summary Creates the directory structure and places the Terraform files for
+# AWS instance provisioning in the correct locations
 #
-# A description of what this class does
+# Include this class on any node that can reach AWS and has Terraform installed
+# in order to provision AWS instances from it using the Tasks included in this module. 
 #
 # @example
 #   include vm_provision
 class vm_provision {
   if $facts['os']['family'] == 'windows' {
-    # build the directory structure for AWS instance provisioning
+    # build the directory structure for AWS instance provisioning on Windows
     file { 'C:/vm_provision':
       ensure => 'directory',
     }
@@ -23,7 +25,7 @@ class vm_provision {
       ensure => 'directory',
     }
 
-    # place the Terraform files for AWS instance provisioning in the correct locations
+    # place the Terraform files for AWS instance provisioning in the correct locations for Windows
     file { 'C:/vm_provision/aws/custom_instance/aws_custom_instance.tf':
       ensure => 'file',
       source => 'puppet:///modules/vm_provision/aws_custom_instance.tf',
@@ -40,7 +42,7 @@ class vm_provision {
     }
   }
   elsif $facts['kernel'] == 'Linux' {
-    # build the directory structure for AWS instance provisioning
+    # build the directory structure for AWS instance provisioning for Linux
     file { '/usr/vm_provision':
       ensure => 'directory',
     }
@@ -57,7 +59,7 @@ class vm_provision {
       ensure => 'directory',
     }
 
-    # place the Terraform files for AWS instance provisioning in the correct locations
+    # place the Terraform files for AWS instance provisioning in the correct locations for Linux
     file { '/usr/vm_provision/aws/custom_instance/aws_custom_instance.tf':
       ensure => 'file',
       source => 'puppet:///modules/vm_provision/aws_custom_instance.tf',
