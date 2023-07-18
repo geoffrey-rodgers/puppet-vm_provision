@@ -1,0 +1,98 @@
+{
+  "puppet_task_version": 1,
+  "supports_noop": false,
+  "description": "Run on a Linux node to create a new EC2 instance using supplied parameters. This task expects most resources to support the new instance to already be in place, e.g. subnet, public key pair, security group, etc. The task will create a new instance, attach an EBS volume, and tag the instance with the supplied tags.",
+  "parameters": {
+    "ami": {
+      "description": "The AMI to use for the instance",
+      "type": "Optional[String]",
+      "default": "ami-07d0cf3af28718ef8"
+    },
+    "instance_name": {
+      "description": "The name of the instance",
+      "type": "String"
+    },
+    "instance_type": {
+      "description": "The type of instance to start",
+      "type": "Optional[String]",
+      "default": "t2.micro"
+    },
+    "availability_zone": {
+      "description": "The Availability Zone to start the instance in",
+      "type": "Optional[String]",
+      "default": "us-east-1a"
+    },
+    "key_name": {
+      "description": "The key pair to use for the instance",
+      "type": "String"
+    },
+    "monitoring": {
+      "description": "Whether to enable detailed monitoring",
+      "type": "Optional[Boolean]",
+      "default": false
+    },
+    "vpc_security_group_ids": {
+      "description": "A list of security group IDs to associate with the instance",
+      "type": "String"
+    },
+    "subnet_id": {
+      "description": "The VPC Subnet ID to launch the instance in",
+      "type": "String"
+    },
+    "disable_api_termination": {
+      "description": "Whether the instance can be terminated using the EC2 API",
+      "type": "Optional[Boolean]",
+      "default": false
+    },
+    "ebs_optimized": {
+      "description": "Whether the instance is EBS-optimized",
+      "type": "Optional[Boolean]",
+      "default": false
+    },
+    "root_volume_type": {
+      "description": "The type of volume to attach as the root volume",
+      "type": "Optional[String]",
+      "default": "gp3"
+    },
+    "root_volume_size": {
+      "description": "The size of the root volume",
+      "type": "Optional[Integer]",
+      "default": 30
+    },
+    "root_delete_on_termination": {
+      "description": "Whether to delete the root volume on instance termination",
+      "type": "Optional[Boolean]",
+      "default": true
+    },
+    "ebs_device_name": {
+      "description": "The device name for the EBS volume",
+      "type": "Optional[String]",
+      "default": "/dev/sdh"
+    },
+    "ebs_volume_type": {
+      "description": "The type of the EBS volume",
+      "type": "Optional[String]",
+      "default": "gp3"
+    },
+    "ebs_volume_size": {
+      "description": "The size of the EBS volume",
+      "type": "Optional[Integer]",
+      "default": 20
+    },
+    "ebs_delete_on_termination": {
+      "description": "Whether to delete the EBS volume on instance termination",
+      "type": "Optional[Boolean]",
+      "default": false
+    },
+    "ebs_iops": {
+      "description": "The provisioned IOPS for the EBS volume",
+      "type": "Optional[Integer]",
+      "default": 200
+    },
+    "region": {
+      "description": "The AWS region to use",
+      "type": "Optional[String]",
+      "default": "us-east-1"
+    }
+  }
+}
