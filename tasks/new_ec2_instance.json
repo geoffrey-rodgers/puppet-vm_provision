@@ -1,7 +1,7 @@
 {
   "puppet_task_version": 1,
   "supports_noop": false,
-  "description": "Creates a new EC2 instance based on pre-defined hardware settings.",
+  "description": "Run on a Windows node to create a new EC2 instance based on pre-defined hardware settings.",
   "parameters": {
     "instance_size": {
       "description": "The pre-defined hardware size of the instance to create.",
@@ -14,7 +14,7 @@
       "default": "ami-07d0cf3af28718ef8"
     },
     "instance_name": {
-      "description": "The name of the instance",
+      "description": "The name of the instance.",
       "type": "String"
     },
     "region": {
