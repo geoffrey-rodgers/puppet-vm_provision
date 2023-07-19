@@ -25,17 +25,18 @@ case $PT_instance_size in
         terraform apply -auto-approve \
             -var "ami=$PT_ami" \
             -var "instance_name=$PT_instance_name" \
-            -var "instance_type=t2.micro" \
+            -var "instance_type=t3.micro" \
             -var "root_volume_type=gp3" \
             -var "root_volume_size=30" \
             -var "region=$PT_region" \
-            -var "public_key_data=$PT_public_key_data"
+            -var "public_key_data=$PT_public_key_data" \
+            -var "pe_server_name=$PT_pe_server_name"
         ;;
     "Medium")
         terraform apply -auto-approve \
             -var "ami=$PT_ami" \
             -var "instance_name=$PT_instance_name" \
-            -var "instance_type=t2.micro" \
+            -var "instance_type=t3.micro" \
             -var "ebs_optimized=false" \
             -var "root_volume_type=gp3" \
             -var "root_volume_size=30" \
@@ -43,7 +44,8 @@ case $PT_instance_size in
             -var "ebs_volume_type=gp3" \
             -var "ebs_volume_size=20" \
             -var "region=$PT_region" \
-            -var "public_key_data=$PT_public_key_data"
+            -var "public_key_data=$PT_public_key_data" \
+            -var "pe_server_name=$PT_pe_server_name"
         ;;
     "Large")
         terraform apply -auto-approve \
@@ -57,6 +59,7 @@ case $PT_instance_size in
             -var "ebs_volume_type=gp3" \
             -var "ebs_volume_size=30" \
             -var "region=$PT_region" \
-            -var "public_key_data=$PT_public_key_data"
+            -var "public_key_data=$PT_public_key_data" \
+            -var "pe_server_name=$PT_pe_server_name"
         ;;
 esac
