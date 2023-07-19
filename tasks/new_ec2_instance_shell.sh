@@ -30,7 +30,8 @@ case $PT_instance_size in
             -var "root_volume_size=30" \
             -var "region=$PT_region" \
             -var "public_key_data=$PT_public_key_data" \
-            -var "pe_server_name=$PT_pe_server_name"
+            -var "pe_server_name=$PT_pe_server_name" \
+            -var "pe_server_ip=$PT_pe_server_ip"
         ;;
     "Medium")
         terraform apply -auto-approve \
@@ -45,7 +46,8 @@ case $PT_instance_size in
             -var "ebs_volume_size=20" \
             -var "region=$PT_region" \
             -var "public_key_data=$PT_public_key_data" \
-            -var "pe_server_name=$PT_pe_server_name"
+            -var "pe_server_name=$PT_pe_server_name" \
+            -var "pe_server_ip=$PT_pe_server_ip"
         ;;
     "Large")
         terraform apply -auto-approve \
@@ -60,6 +62,7 @@ case $PT_instance_size in
             -var "ebs_volume_size=30" \
             -var "region=$PT_region" \
             -var "public_key_data=$PT_public_key_data" \
-            -var "pe_server_name=$PT_pe_server_name"
+            -var "pe_server_name=$PT_pe_server_name" \
+            -var "pe_server_ip=$PT_pe_server_ip"
         ;;
 esac
