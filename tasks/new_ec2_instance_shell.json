@@ -11,7 +11,7 @@
       "ami": {
         "description": "The AMI to use for the instance. Defaults to Ubuntu 18.04 in us-east-1.",
         "type": "Optional[String]",
-        "default": "ami-07d0cf3af28718ef8"
+        "default": "ami-055744c75048d8296"
       },
       "instance_name": {
         "description": "The name of the instance.",
@@ -39,6 +39,10 @@
       },
       "pe_server_name": {
         "description": "The name of the Puppet Enterprise server or Compiler to use for running the PE installation script.",
+        "type": "String"
+      },
+      "pe_server_ip": {
+        "description": "The IP address of the Puppet Enterprise server or Compiler to use for running the PE installation script.",
         "type": "String"
       }
     }

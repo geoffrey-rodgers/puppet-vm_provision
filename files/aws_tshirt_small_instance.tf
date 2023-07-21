@@ -21,6 +21,42 @@ provider "aws" {
   region  = var.region
 }
 
+data "aws_ami" "input" {
+  # most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "image-id"
+    values = ["${var.ami}"]
+  }
+}
+
+locals {
+  is_windows_ami = data.aws_ami.input.platform == "windows" ? true : false
+
+  windows_user_data = <<-EOF
+    <powershell>
+    $content = ${var.pe_server_ip} ${var.pe_server_name}
+    Add-Content -Path C:/Windows/System32/drivers/etc/hosts -Value $content
+    [System.Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    [Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}
+    $webClient = New-Object System.Net.WebClient
+    $webClient.DownloadFile('https://${var.pe_server_name}.com:8140/packages/current/install.ps1', 'install.ps1')
+    .\install.ps1 -v
+    puppet agent -t
+    </powershell>
+    EOF
+
+  linux_user_data = <<-EOF
+    #!/bin/bash
+    echo -e "${var.pe_server_ip} ${var.pe_server_name}" >> /etc/hosts
+    curl -k https://${var.pe_server_name}:8140/packages/current/install.bash | bash
+    puppet agent -t
+    EOF
+
+  user_data = local.is_windows_ami ? local.windows_user_data : local.linux_user_data
+}
+
 resource "aws_security_group" "single_srvr_sg" {
   name          = "${var.instance_name}_sg"
 
@@ -60,13 +96,7 @@ resource "aws_instance" "server_instance" {
   vpc_security_group_ids = [aws_security_group.single_srvr_sg.id]
   key_name               = aws_key_pair.key_pair.key_name
   tags                   = {Name = var.instance_name}
-
-  user_data = <<-EOF
-              #!/bin/bash
-              echo -e "${var.pe_server_ip} ${var.pe_server_name}" >> /etc/hosts
-              curl -k https://${var.pe_server_name}:8140/packages/current/install.bash | bash
-              puppet agent -t
-              EOF
+  user_data              = local.user_data
 
   root_block_device {
     volume_type = var.root_volume_type
