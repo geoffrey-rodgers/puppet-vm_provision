@@ -1,10 +1,11 @@
 {
   "name": "geoff-vm_provision",
   "version": "0.1.0",
-  "author": "geoff",
+  "author": "geoffrey-rodgers",
   "summary": "Provisions virtual machines in the cloud",
-  "license": "MIT",
-  "source": "",
+  "license": "Apache-2.0",
+  "source": "https://github.com/geoffrey-rodgers/puppet-vm_provision.git",
+  "project_page": "https://github.com/geoffrey-rodgers/puppet-vm_provision",
   "dependencies": [
 
   ],
@@ -43,13 +44,6 @@
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
         "18.04"
-      ]
-    },
-    {
-      "operatingsystem": "windows",
-      "operatingsystemrelease": [
-        "2019",
-        "10"
       ]
     }
   ],
